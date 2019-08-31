@@ -1,0 +1,64 @@
+title = "Contact Us"
+url = "/contact-us"
+layout = "default"
+description = "Contact Us"
+is_hidden = 0
+==
+{% put styles %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+crossorigin=""/>
+{% endput %}
+
+{% partial "title" heading1="SAY HELLO" heading2="Contact" bg=6 %}
+
+
+<section class="story-area left-text center-sm-text">
+        <div class="container">
+                <div class="heading">
+                        <img class="heading-img" src="{{ 'assets/images/heading_logo.png' | theme }}" alt="">
+                        <h2>Say hello</h2>
+                        <h5 class="mt-10 mb-30">Say hello, send us a message</h5>
+                        <p class="mx-w-700x mlr-auto">Proin dictum viverra varius. Etiam vulputate libero dui, at pretium
+                                elit elementum quis. Enean porttitor eros non ultrices convallis.
+                                Vivamus quis dolor ut arcu lobortis finibus a vitae leo. Sed eget tempus sem.
+                                Nullam sed lacus sed metus tincidunt lobortis lobortis at nibh. Morbi euismod, arcu in gravida rhoncus</p>
+                </div>
+
+                <form class="form-style-1 placeholder-1">
+                        <div class="row">
+                                <div class="col-md-6"> <input class="mb-20" type="text" placeholder="Name">  </div>
+                                <div class="col-md-6"> <input class="mb-20" type="text" placeholder="E-mail">  </div>
+                                <div class="col-md-12"><input class="mb-20" type="text" placeholder="Subject">  </div>
+                                <div class="col-md-12">
+                                        <textarea class="h-200x ptb-20" placeholder="Message"></textarea></div>
+                        </div><!-- row -->
+                        <h6 class="center-text mtb-30"><a href="#" class="btn-primaryc plr-25"><b>SEND MESSAGE</b></a></h6>
+                </form>
+        </div><!-- container -->
+</section>
+
+
+<div class="map-area h-400x mb--30" style="position:relative; top:-30px;">
+        <div id="map" style="height:100%;"></div>
+</div><!-- map-area -->
+
+{% put scripts %}
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+<script>
+        $(function() {
+                var mymap = L.map('map').setView([51.901738, -0.397972], 16);
+                var attribution =
+  'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>';
+                var tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+                var tiles = L.tileLayer(tileUrl, { attribution });
+                tiles.addTo(mymap);
+
+                var marker = L.marker([51.901738, -0.397972]).addTo(mymap);
+                marker.bindPopup("<b>Luigi's</b>").openPopup();
+        });
+
+</script>
+{% endput %}
